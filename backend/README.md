@@ -18,11 +18,11 @@
 
 **Deletar paciente**
 
-→ Não deve ser possível deletar um paciente que não existe []
+→ Não deve ser possível deletar um paciente que não existe [x]
 
-→ Deve ser possível deletar mais de um paciente []
+→ Deve ser possível deletar mais de um paciente [x]
 
-→ Deve ser possível deletar apenas um paciente []
+→ Deve ser possível deletar apenas um paciente [x]
 
 **Listagem de pacientes**
 

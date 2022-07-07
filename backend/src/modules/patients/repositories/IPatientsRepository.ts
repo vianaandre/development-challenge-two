@@ -11,5 +11,7 @@ interface IPatientsRepository {
     totalPatients: number;
   }>;
   search(search: string): Promise<Patients[]>;
+  delete(ids: { id: string }[]): Promise<void>;
+  findById(ids: { id: string }[]): Promise<Patients[]>;
 }
 export { IPatientsRepository };

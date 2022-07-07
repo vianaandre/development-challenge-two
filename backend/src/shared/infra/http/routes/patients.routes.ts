@@ -1,4 +1,5 @@
 import { CreatePatientsController } from "@modules/patients/useCases/createPatients/CreatePatientsController";
+import { DeletePatientController } from "@modules/patients/useCases/deletePatient/DeletePatientController";
 import { ListPatientsController } from "@modules/patients/useCases/listPatients/ListPatientsController";
 import { SearchPatientsController } from "@modules/patients/useCases/searchPatients/SearchPatientsController";
 import { Router } from "express";
@@ -9,6 +10,7 @@ import { validationDataPacients } from "@shared/infra/http/middlewares/validatio
 const createPatientsController = new CreatePatientsController();
 const listPatientsController = new ListPatientsController();
 const searchPatientController = new SearchPatientsController();
+const deletePatientController = new DeletePatientController();
 
 const patientsRouter = Router();
 
@@ -29,5 +31,6 @@ patientsRouter.post(
   validationDataPacients,
   createPatientsController.handle
 );
+patientsRouter.delete("/:id", deletePatientController.handle);
 
 export { patientsRouter };

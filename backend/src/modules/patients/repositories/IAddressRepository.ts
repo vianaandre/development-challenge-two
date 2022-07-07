@@ -7,6 +7,7 @@ interface IAddressRepository {
   findById(id: string): Promise<Address>;
   list(page: number, desc: "DESC" | "ASC"): Promise<Address[]>;
   listFindById(ids: { id: string }[]): Promise<Address[]>;
+  delete(id: { id: string }[]): Promise<void>;
 }
 
 export { IAddressRepository };

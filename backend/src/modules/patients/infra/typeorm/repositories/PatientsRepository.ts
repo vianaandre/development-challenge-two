@@ -63,6 +63,23 @@ class PatientsRepository implements IPatientsRepository {
 
     return patients;
   }
+
+  async delete(ids: { id: string }[]): Promise<void> {
+    await this.repository
+      .createQueryBuilder("patients")
+      .delete()
+      .from(Patients)
+      .where(ids)
+      .execute();
+  }
+
+  async findById(ids: { id: string }[]): Promise<Patients[]> {
+    const patients = await this.repository.find({
+      where: ids,
+    });
+
+    return patients;
+  }
 }
 
 export { PatientsRepository };
