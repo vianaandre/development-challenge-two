@@ -31,6 +31,35 @@ class AddressRepository implements IAddressRepository {
 
     return address;
   }
+
+  async findById(id: string): Promise<Address> {
+    const address = await this.repository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    return address;
+  }
+
+  async list(page: number, desc: "DESC" | "ASC"): Promise<Address[]> {
+    const address = await this.repository
+      .createQueryBuilder("address")
+      .orderBy("address.created_at", desc)
+      .skip((page - 1) * 10)
+      .take(10)
+      .getMany();
+
+    return address;
+  }
+
+  async listFindById(ids: { id: string }[]): Promise<Address[]> {
+    const address = await this.repository.find({
+      where: ids,
+    });
+
+    return address;
+  }
 }
 
 export { AddressRepository };

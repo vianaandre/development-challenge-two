@@ -29,6 +29,40 @@ class PatientsRepository implements IPatientsRepository {
 
     return pacients;
   }
+
+  async list(
+    page: number,
+    desc: "DESC" | "ASC"
+  ): Promise<{
+    patients: Patients[];
+    totalPatients: number;
+  }> {
+    const patients = await this.repository
+      .createQueryBuilder("patients")
+      .orderBy("patients.created_at", desc)
+      .skip((page - 1) * 10)
+      .take(10)
+      .getMany();
+
+    const totalPatients = await this.repository
+      .createQueryBuilder("patients")
+      .getCount();
+
+    return {
+      patients,
+      totalPatients,
+    };
+  }
+
+  async search(search: string): Promise<Patients[]> {
+    const patients = await this.repository
+      .createQueryBuilder("patients")
+      .select()
+      .where("name ILIKE :search", { search: `%${search}%` })
+      .getMany();
+
+    return patients;
+  }
 }
 
 export { PatientsRepository };

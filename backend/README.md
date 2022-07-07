@@ -8,9 +8,13 @@
 
 → Não deve ser possível cadastrar um paciente sem o Nome, a data de nascimento, endereço e E-mail [x]
 
+**Editar paciente**
+
 → Deve ser possível editar um paciente, mudando o nome, a data de nascimento, o endereço e o E-mail []
 
 → Não deve ser possível editar um paciente sem o nome, a data de nascimento, o endereço e o E-mail []
+
+→ Não deve ser possível editar um paciente que não exista []
 
 **Deletar paciente**
 
@@ -22,15 +26,13 @@
 
 **Listagem de pacientes**
 
-→ Deve ser possível listar todos os pacientes []
+→ Deve ser possível listar todos os pacientes [x]
 
-→ Deve ser possível listar os paciente de forma desc ou asc []
+→ Deve ser possível listar os paciente de forma desc ou asc [x]
 
-→ Deve ser possível buscar os pacientes de forma paginada []
+→ Deve ser possível buscar os pacientes de forma paginada [x]
 
-→ Deve ser possível listar apenas um paciente []
-
-→ Deve ser possível pesquisar um paciente []
+→ Deve ser possível pesquisar um paciente [x]
 
 <hr />
 

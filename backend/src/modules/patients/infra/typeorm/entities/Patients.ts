@@ -2,7 +2,7 @@ import {
   Column,
   Entity,
   PrimaryColumn,
-  ManyToOne,
+  OneToOne,
   JoinColumn,
   CreateDateColumn,
 } from "typeorm";
@@ -24,7 +24,7 @@ class Patients {
   @Column()
   email: string;
 
-  @ManyToOne(() => Address, (address) => address.id)
+  @OneToOne(() => Address, (address) => address.id)
   @JoinColumn({ name: "address_id" })
   address: Address;
 

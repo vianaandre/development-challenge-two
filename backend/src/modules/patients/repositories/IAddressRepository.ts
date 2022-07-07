@@ -4,6 +4,9 @@ import { ICreateAddressDTO } from "../dto/ICreateAddressDTO";
 
 interface IAddressRepository {
   create(data: ICreateAddressDTO): Promise<Address>;
+  findById(id: string): Promise<Address>;
+  list(page: number, desc: "DESC" | "ASC"): Promise<Address[]>;
+  listFindById(ids: { id: string }[]): Promise<Address[]>;
 }
 
 export { IAddressRepository };
