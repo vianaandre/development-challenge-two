@@ -10,11 +10,11 @@
 
 **Editar paciente**
 
-→ Deve ser possível editar um paciente, mudando o nome, a data de nascimento, o endereço e o E-mail []
+→ Deve ser possível editar um paciente, mudando o nome, a data de nascimento, o endereço e o E-mail [x]
 
-→ Não deve ser possível editar um paciente sem o nome, a data de nascimento, o endereço e o E-mail []
+→ Não deve ser possível editar um paciente sem o nome, a data de nascimento, o endereço e o E-mail [x]
 
-→ Não deve ser possível editar um paciente que não exista []
+→ Não deve ser possível editar um paciente que não exista [x]
 
 **Deletar paciente**
 

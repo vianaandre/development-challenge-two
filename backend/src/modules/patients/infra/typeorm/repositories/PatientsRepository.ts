@@ -80,6 +80,19 @@ class PatientsRepository implements IPatientsRepository {
 
     return patients;
   }
+
+  async update(data: ICreatePatientsDTO, id: string): Promise<void> {
+    await this.repository
+      .createQueryBuilder("patients")
+      .update(Patients)
+      .set({
+        name: data.name,
+        birth_date: data.birth_date,
+        email: data.email,
+      })
+      .where("id = :id", { id })
+      .execute();
+  }
 }
 
 export { PatientsRepository };

@@ -8,6 +8,7 @@ interface IAddressRepository {
   list(page: number, desc: "DESC" | "ASC"): Promise<Address[]>;
   listFindById(ids: { id: string }[]): Promise<Address[]>;
   delete(id: { id: string }[]): Promise<void>;
+  update(data: ICreateAddressDTO, id: string): Promise<void>;
 }
 
 export { IAddressRepository };

@@ -13,5 +13,6 @@ interface IPatientsRepository {
   search(search: string): Promise<Patients[]>;
   delete(ids: { id: string }[]): Promise<void>;
   findById(ids: { id: string }[]): Promise<Patients[]>;
+  update(data: ICreatePatientsDTO, id: string): Promise<void>;
 }
 export { IPatientsRepository };

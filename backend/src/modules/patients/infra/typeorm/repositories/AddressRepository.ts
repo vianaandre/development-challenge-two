@@ -60,12 +60,27 @@ class AddressRepository implements IAddressRepository {
 
     return address;
   }
+
   async delete(ids: { id: string }[]): Promise<void> {
     await this.repository
       .createQueryBuilder("address")
       .delete()
       .from(Address)
       .where(ids)
+      .execute();
+  }
+
+  async update(data: ICreateAddressDTO, id: string): Promise<void> {
+    await this.repository
+      .createQueryBuilder("address")
+      .update(Address)
+      .set({
+        city: data.city,
+        neighborhood: data.neighborhood,
+        number: data.number,
+        postcode: data.postcode,
+      })
+      .where("id = :id", { id })
       .execute();
   }
 }
