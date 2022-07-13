@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import { Search } from '../Search'
 
 export const Header: React.FC = () => {
     return (
@@ -16,14 +15,13 @@ export const Header: React.FC = () => {
             borderBottom={1}
             borderColor="secondary.main"
         >
-            <Typography variant='h1' fontWeight={800} color="primary.dark" display="flex">
-                <Typography variant='h1' fontWeight={800} color="primary.main">
-                    Med
+            <Box flex={1} display="flex" justifyContent="center" paddingLeft={20}>
+                <Typography variant='h1' fontWeight={800} color="primary.dark" display="flex">
+                    <Typography variant='h1' fontWeight={800} color="primary.main">
+                        Med
+                    </Typography>
+                    Pacientes
                 </Typography>
-                Pacientes
-            </Typography>
-            <Box marginLeft={5}>
-                <Search />
             </Box>
             <Box display="flex" height="100%" alignItems="center" ml="auto" paddingY={3}>
                 <img src="https://avatars.githubusercontent.com/u/67127843?v=4" alt="André Viana" style={{

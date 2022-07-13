@@ -23,7 +23,7 @@
     "rules": {
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-explicit-any": "off",
         "react/jsx-filename-extension": [
             1,
             { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
@@ -56,6 +56,8 @@
             }
         ],
         "react/jsx-key": "off",
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "no-shadow": "off",
+        "no-param-reassign": "off"
     }
 }

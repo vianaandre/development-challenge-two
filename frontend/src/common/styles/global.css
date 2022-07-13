@@ -47,3 +47,6 @@ ul {
 .MuiOutlinedInput-root {
     border: none !important;
 }
+.create-patient .MuiTextField-root button svg {
+    color: #0A39DD !important
+}

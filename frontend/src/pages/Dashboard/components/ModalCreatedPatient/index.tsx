@@ -1,0 +1,1 @@
+export { ModalCreatedPatient } from './ModalCreatedPatient'
