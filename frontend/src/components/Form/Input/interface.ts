@@ -11,5 +11,5 @@ export interface IInput extends OutlinedInputProps {
     requiredField?: boolean;
     mask?: string;
     error?: boolean;
-    errorText?: string
+    errorText?: string | null
 }

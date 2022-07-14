@@ -28,6 +28,7 @@
             1,
             { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
         ],
+        "react/jsx-no-constructed-context-values": "off",
         "react/jsx-props-no-spreading": "off",
         "react/function-component-definition": "off",
         "arrow-body-style": "off",

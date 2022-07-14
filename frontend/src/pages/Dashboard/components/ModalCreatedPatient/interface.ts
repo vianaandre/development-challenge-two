@@ -1,6 +1,6 @@
 export interface IModalCreatedPatient {
     open: boolean;
-    onClose(): void;
+    setIsOpenModal(setIsOpenModal: boolean): void;
 }
 
 export interface IPatientDate {

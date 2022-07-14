@@ -6,7 +6,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
 import InfoIcon from '@mui/icons-material/Info'
 import { IHeader } from './interface'
 
-export const Header: React.FC<IHeader> = ({ handleOpenModal }) => {
+export const Header: React.FC<IHeader> = ({ setIsOpenModal }) => {
     const [ isOnFocus, setIsOnFocus ] = useState(false)
 
     return (
@@ -31,7 +31,7 @@ export const Header: React.FC<IHeader> = ({ handleOpenModal }) => {
                     }
                 }}>
                     <PersonAddIcon />
-                    <Box onClick={handleOpenModal} >
+                    <Box onClick={() => setIsOpenModal(true)} >
                         <Typography variant='body2' fontWeight={500} textTransform="uppercase" ml={1} >
                             Novo Paciente
                         </Typography>

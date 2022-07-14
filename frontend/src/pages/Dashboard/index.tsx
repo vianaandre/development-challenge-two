@@ -1,15 +1,11 @@
 import { Box, Typography } from '@mui/material'
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { LayoutDashboard } from '../../layouts/Dashboard'
 import { Header } from './components/Header'
 import { ModalCreatedPatient } from './components/ModalCreatedPatient'
 
 export const Dashboard: React.FC = () => {
     const [ isOpenModal, setIsOpenModal ] = useState(false)
-
-    const handleOpenModal = useCallback(() => {
-        setIsOpenModal(!isOpenModal)
-    }, [isOpenModal])
 
     return (
         <LayoutDashboard>
@@ -19,8 +15,8 @@ export const Dashboard: React.FC = () => {
                 </Typography>
             </Box>
             <Box display="flex" justifyContent="space-between" alignItems="center" mt={4.5}>
-               <Header handleOpenModal={handleOpenModal} /> 
-               <ModalCreatedPatient open={isOpenModal} onClose={handleOpenModal} />
+               <Header setIsOpenModal={setIsOpenModal} /> 
+               <ModalCreatedPatient open={isOpenModal} setIsOpenModal={setIsOpenModal} />
             </Box>
         </LayoutDashboard>
     )

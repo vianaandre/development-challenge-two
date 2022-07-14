@@ -3,5 +3,7 @@ export interface IInputDate {
     id: string;
     requiredField?: boolean;
     setIsBirthDate(isBirthDate: Date | null): void;
-    value: Date | null
+    value: Date | null;
+    error?: boolean;
+    errorText?: string | null
 }

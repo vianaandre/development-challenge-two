@@ -1,3 +1,3 @@
 export interface IHeader {
-    handleOpenModal(): void;
+    setIsOpenModal(setIsOpenModal: boolean): void;
 }
