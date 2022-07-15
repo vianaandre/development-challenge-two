@@ -59,6 +59,10 @@
         "react/jsx-key": "off",
         "import/no-unresolved": "off",
         "no-shadow": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "camelcase": "off",
+        "consistent-return": "off",
+        "array-callback-return": "off",
+        "no-nested-ternary": "off"
     }
 }

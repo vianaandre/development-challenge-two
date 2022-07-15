@@ -1,15 +1,30 @@
 import useSWR from 'swr'
 import { api } from '../services/api'
 
-export const useFetch = (path: string) => {
-    const { data, error } = useSWR(`${process.env.REACT_APP_API_URL}${path}`, async path => {
-        const response = await api.get(path)
+interface IOptionsRequest {
+    search?: string | null;
+    page?: number;
+    order?: 'asc' | 'desc'
+}
 
-        return response
+export function useFetch<Data = any>(path: string, options: IOptionsRequest) {
+    let url = `${process.env.REACT_APP_API_URL}${path}`
+
+    if(options.search) {
+        url = `${process.env.REACT_APP_API_URL}${path}/${options.search}`
+    }
+    
+    if(options.page) {
+        url += `?page=${options.page || 1}&order=${options.order || 'asc'}`
+    }
+
+    const { data, error, mutate } = useSWR<Data, Error>(`${url}`, async path => {
+        const { data } = await api.get(path) as { data: Data }
+        return data
     }, {
         errorRetryCount: 1,
-        shouldRetryOnError: true
+        shouldRetryOnError: true,
     })
 
-    return { data, error }
+    return { data, error, mutate }
 }

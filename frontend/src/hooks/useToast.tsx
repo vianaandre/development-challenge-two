@@ -1,8 +1,8 @@
 import { Alert, Snackbar, Typography } from '@mui/material'
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 interface ToastContextData {
-  addToast(message: Omit<ToastMessage, 'id'>): void;
+  addToast(message: Omit<ToastMessage, 'id'>): void
 }
 
 export interface ToastMessage {
@@ -11,14 +11,14 @@ export interface ToastMessage {
   openToast: boolean;
 }
 
-const ToastContext = createContext<ToastContextData>({} as ToastContextData);
+const ToastContext = createContext<ToastContextData>({} as ToastContextData)
 
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [messages, setMessages] = useState<ToastMessage>({
     description: '',
     type: 'success',
     openToast: false
-  });
+  })
 
   const addToast = useCallback(
     ({ type, description, openToast }: Omit<ToastMessage, 'id'>) => {
@@ -27,10 +27,22 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         openToast,
         description,
         type
-      });
+      })
     },
     [],
-  );
+  )
+
+  useEffect(() => {
+    if(messages.openToast) {
+        setTimeout(() => {
+            setMessages({
+                openToast: false,
+                type: 'success',
+                description: ''
+            })
+        }, 6000)
+    }
+  }, [messages.openToast])
 
   return (
     <ToastContext.Provider value={{ addToast }}>
@@ -51,10 +63,10 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 </Alert>
             </Snackbar>
     </ToastContext.Provider>
-  );
-};
+  )
+}
 
 export function useToast(): ToastContextData {
-  const context = useContext(ToastContext);
-  return context;
+  const context = useContext(ToastContext)
+  return context
 }

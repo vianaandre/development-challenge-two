@@ -1,8 +1,9 @@
 import { IAddress } from "./IAddress";
 
 export interface IPatient {
+    id?: string;
     name: string;
     email: string;
-    birthDate: Date | null;
+    birth_date: Date;
     address: IAddress
 }
