@@ -8,9 +8,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=user_medcloud
-      - POSTGRES_PASSWORD=user_medcloud
-      - POSTGRES_DB=medcloud
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${database-medcloud}
     volumes:
       - pgdata:/data/postgres
   app:

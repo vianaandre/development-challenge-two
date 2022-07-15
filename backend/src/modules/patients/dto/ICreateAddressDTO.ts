@@ -4,6 +4,7 @@ interface ICreateAddressDTO {
   postcode: string;
   number: number;
   neighborhood: string;
+  district: string;
 }
 
 export { ICreateAddressDTO };

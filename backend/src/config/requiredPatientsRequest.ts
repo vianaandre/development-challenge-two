@@ -9,6 +9,7 @@ const requiredPatientsRequest = [
   body("address.postcode").isString(),
   body("address.number").isNumeric(),
   body("address.neighborhood").isString(),
+  body("address.district").isString(),
 ];
 
 export { requiredPatientsRequest };

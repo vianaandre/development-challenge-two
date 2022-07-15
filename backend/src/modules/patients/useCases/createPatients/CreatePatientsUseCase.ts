@@ -1,4 +1,5 @@
 import { ICreateAddressDTO } from "@modules/patients/dto/ICreateAddressDTO";
+import { Address } from "@modules/patients/infra/typeorm/entities/Address";
 import { Patients } from "@modules/patients/infra/typeorm/entities/Patients";
 import { IAddressRepository } from "@modules/patients/repositories/IAddressRepository";
 import { IPatientsRepository } from "@modules/patients/repositories/IPatientsRepository";
@@ -11,6 +12,10 @@ interface IRequest {
   birth_date: string;
   email: string;
   address: ICreateAddressDTO;
+}
+
+interface IResponse extends Patients {
+  address: Address;
 }
 
 @injectable()
@@ -27,7 +32,7 @@ class CreatePatientsUseCase {
     birth_date,
     email,
     address,
-  }: IRequest): Promise<Patients> {
+  }: IRequest): Promise<IResponse> {
     if (
       !/^\d\d\d\d-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])$/.test(birth_date)
     ) {
@@ -40,16 +45,24 @@ class CreatePatientsUseCase {
       neighborhood: address.neighborhood,
       number: address.number,
       postcode: address.postcode,
+      district: address.district,
     });
 
-    const pacients = await this.patientsRepository.create({
+    const pacient = await this.patientsRepository.create({
       name,
       birth_date,
       email,
       address_id: getAddress.id,
     });
 
-    return pacients;
+    const addressPatient = await this.addressRepository.findById(
+      pacient.address_id
+    );
+
+    return {
+      ...pacient,
+      address: addressPatient,
+    };
   }
 }
 

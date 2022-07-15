@@ -12,7 +12,9 @@ class SearchPatientsUseCase {
     private addressRepository: IAddressRepository
   ) {}
 
-  async execute(search: string): Promise<Patients[]> {
+  async execute(
+    search: string
+  ): Promise<{ patients: Patients[]; search: string }> {
     const patients = await this.patientsRepository.search(search);
 
     const addressIds = patients.map((patient) => {
@@ -32,7 +34,10 @@ class SearchPatientsUseCase {
       }
     }
 
-    return newFormatPatients;
+    return {
+      patients: newFormatPatients,
+      search,
+    };
   }
 }
 

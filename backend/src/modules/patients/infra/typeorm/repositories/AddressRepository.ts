@@ -18,6 +18,7 @@ class AddressRepository implements IAddressRepository {
     number,
     postcode,
     state,
+    district,
   }: ICreateAddressDTO): Promise<Address> {
     const address = await this.repository.create({
       city,
@@ -25,6 +26,7 @@ class AddressRepository implements IAddressRepository {
       number,
       postcode,
       state,
+      district,
     });
 
     await this.repository.save(address);
@@ -79,6 +81,7 @@ class AddressRepository implements IAddressRepository {
         neighborhood: data.neighborhood,
         number: data.number,
         postcode: data.postcode,
+        district: data.district,
       })
       .where("id = :id", { id })
       .execute();

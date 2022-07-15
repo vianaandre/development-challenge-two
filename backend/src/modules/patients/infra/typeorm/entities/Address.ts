@@ -21,6 +21,9 @@ class Address {
   @Column()
   neighborhood: string;
 
+  @Column()
+  district: string;
+
   @CreateDateColumn()
   created_at: Date;
 
