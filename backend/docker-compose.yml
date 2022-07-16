@@ -6,11 +6,11 @@ services:
     container_name: database_medcloud
     restart: always
     ports:
-      - 5432:5432
+      - ${DB_PORT}:5432
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${database-medcloud}
+      - POSTGRES_DB=${DB_DATABASE}
     volumes:
       - pgdata:/data/postgres
   app:
