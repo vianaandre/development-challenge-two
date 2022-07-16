@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { TableContainer, Table, TableHead, TableRow, TableCell, Checkbox, Typography, IconButton, Box, TableBody, Button, Pagination, Modal, Skeleton, useMediaQuery } from '@mui/material'
+import { TableContainer, Table, TableHead, TableRow, TableCell, Checkbox, Typography, IconButton, Box, TableBody, Button, Pagination, Modal, Skeleton, useMediaQuery, CircularProgress } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
@@ -21,6 +21,7 @@ export const TablePatients: React.FC = () => {
     const { data, handlePageByOrder, handleDelete, error } = usePatient()
     const [ isOpenModalDelete, setIsOpenModalDelete ] = useState(false)
     const { addToast } = useToast()
+    const [ isLoadingDelete, setIsLoadingDelete ] = useState(false)
     const matches = useMediaQuery('(max-width: 576px)')
 
     const handleCheckedPatient = useCallback((id: string) => {
@@ -56,8 +57,10 @@ export const TablePatients: React.FC = () => {
 
     const handleDeletePatient = useCallback(async (ids: string[]) => {
         try {
+            setIsLoadingDelete(true)
             await handleDelete(ids)
 
+            setIsLoadingDelete(false)
             addToast({
                 type: 'info',
                 description: 'Pacientes deletados com sucesso',
@@ -66,6 +69,7 @@ export const TablePatients: React.FC = () => {
             setIsOpenModalDelete(false)
             setIsIdsChecked([])
         } catch(err: any) {
+            setIsLoadingDelete(false)
             addToast({
                 type: 'error',
                 description: JSON.stringify(err.message),
@@ -142,9 +146,14 @@ export const TablePatients: React.FC = () => {
                                                     Cancelar
                                                 </Typography>
                                             </Button>
-                                            <Button color="error" onClick={() => handleDeletePatient(isIdsChecked)}>
+                                            <Button color="error" onClick={() => handleDeletePatient(isIdsChecked)} sx={{
+                                                minWidth: 120,
+                                                maxHeight: 49,
+                                            }}>
                                                 <Typography color="secondary.dark" variant='body1' paddingY={1} paddingX={3}>
-                                                    Excluir
+                                                    {isLoadingDelete ? (
+                                                         <CircularProgress color="secondary" size="24px" />
+                                                    ) : 'Excluir'}
                                                 </Typography>
                                             </Button>
                                         </Box>
