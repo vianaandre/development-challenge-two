@@ -79,7 +79,7 @@ export const TablePatients: React.FC = () => {
             paddingBottom: 2,
             maxWidth:  matches ? 'calc(100vw - 48px)' : `calc(100vw - 110px - 48px - 48px)`
         }}>
-            {!data && (
+            {!data && !error && (
                 <Box width="100%">
                     <Skeleton variant="rectangular" width="100%" height={70} sx={{
                         marginBottom: 2,

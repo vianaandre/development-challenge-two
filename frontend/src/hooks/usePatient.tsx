@@ -1,10 +1,11 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { IPatient } from '../common/interfaces/IPatient'
 import { IPatientsRequest } from '../common/interfaces/IPatientRequest'
 import { API_URL_PATIENTS } from '../services/api/routes'
 import { useFetch } from './useFetch'
 import { api } from '../services/api'
+import { useToast } from './useToast'
 
 export interface IPatientDate {
     name: string;
@@ -32,6 +33,7 @@ export const PatientProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const [ isPage, setIsPage ] = useState(1)
     const [ isOrder, setIsOrder ] = useState<'asc' | 'desc'>('asc')
     const [ isSearch, setIsSearch ] = useState<string | null>(null)
+    const { addToast } = useToast()
 
     const { data, mutate, error } = useFetch<IPatientsRequest>(API_URL_PATIENTS, {
         order: isOrder,
@@ -113,6 +115,16 @@ export const PatientProvider: React.FC<{ children: React.ReactNode }> = ({ child
         }
 
     }, [data])
+
+    useEffect(() => {
+        if(error) {
+            addToast({
+                type: 'error',
+                description: JSON.stringify(error.message),
+                openToast: true
+            })
+        }
+    }, [error])
 
     return (
         <PatientContext.Provider value={{ data, handleSubmit, handlePageByOrder, handleSearch, handleDelete, error }}>
