@@ -7,7 +7,8 @@
       "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
       "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --poll --ignore-watch node_modules --respawn ./src/shared/infra/http/server.ts",
       "test": "echo \"Error: no test specified\" && exit 1",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "typeorm": "typeorm-ts-node-commonjs",
+      "start": "node dist/shared/infra/http/server.js"
    },
    "author": "André Viana",
    "license": "ISC",
